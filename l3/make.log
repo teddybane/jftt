@@ -1,0 +1,70 @@
+make clean
+make[1]: Wejście do katalogu `/home/zugo/projekty/jftt/l3'
+rm -f *.o *~ lex.c lex.yy.c bison.c tok.h calc.tab.c calc.tab.h calc.output calc 
+make[1]: Opuszczenie katalogu `/home/zugo/projekty/jftt/l3'
+make
+make[1]: Wejście do katalogu `/home/zugo/projekty/jftt/l3'
+bison -d -v --debug calc.y
+cp calc.tab.c bison.c
+cmp -s calc.tab.h tok.h || cp calc.tab.h tok.h
+clang -g -Wall -ansi -c -lm bison.c -o bison.o
+flex calc.lex
+cp lex.yy.c lex.c
+clang -g -Wall -ansi -c lex.c -o lex.o
+clang -g -Wall -ansi -lm bison.o lex.o  -o calc -lfl
+make[1]: Opuszczenie katalogu `/home/zugo/projekty/jftt/l3'
+make run
+make[1]: Wejście do katalogu `/home/zugo/projekty/jftt/l3'
+./calc < plik_testowy
+jestem w symPush
+	dodaje: 2 :
+	var last : (nil)
+	var ptr : 0x15c5090
+		dodalem :2:
+		rozmiar kolejki to 1
+		elementem przedostatnim(lst) jest 2
+  jestem w symPush
+	dodaje: 3 :
+	var last : 0x15c5090
+	var ptr : 0x15c50d0
+	jestem w if
+		var last->next: 0x15c50d0
+		sq->lst->c 3
+		sq->lst->prev->c 2
+  jestem w symPush
+	dodaje: 7 :
+	var last : 0x15c50d0
+	var ptr : 0x15c5130
+	jestem w if
+		var last->next: 0x15c5130
+		sq->lst->c 7
+		sq->lst->prev->c 3
+  jestem w symPush
+	dodaje: 17 :
+	var last : 0x15c5130
+	var ptr : 0x15c5190
+	jestem w if
+		var last->next: 0x15c5190
+		sq->lst->c 17
+		sq->lst->prev->c 7
+ 2jestem w symPop()
+	size: 4
+	var old: 0x15c5090
+	var new fst: 0x15c50d0
+	zwracam 2
+	2
+3jestem w symPop()
+	size: 3
+	var old: 0x15c50d0
+	var new fst: 0x15c5130
+	zwracam 3
+	3
+7jestem w symPop()
+	size: 2
+	var old: 0x15c5130
+	var new fst: 0x15c5190
+	zwracam 7
+	7
+++-
+	 wynik: 23 
+make[1]: Opuszczenie katalogu `/home/zugo/projekty/jftt/l3'

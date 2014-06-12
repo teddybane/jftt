@@ -1,0 +1,12 @@
+CC = clang
+CFLAGS = -g -ansi -Wall -pedantic
+
+
+
+
+tests:
+	$(CC) $(CFLAGS) tst.calc_h.c -o tst.calc_h
+	./tst.calc_h
+
+clean: 
+	rm tst.calc_h

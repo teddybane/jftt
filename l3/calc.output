@@ -1,0 +1,154 @@
+Nieużywane symbole terminalne w gramatyce
+
+   COMMENT
+   MINUS
+   MULT
+   DIV
+   MOD
+   POW
+   NEG
+   LEFT
+   RIGHT
+
+
+Gramatyka
+
+    0 $accept: input $end
+
+    1 input: /* pusta */
+    2      | input line
+
+    3 line: ENDLINE
+    4     | exp ENDLINE
+    5     | error ENDLINE
+
+    6 exp: NUM
+    7    | exp PLUS exp
+
+
+Symbole terminalne i reguły, w których występują
+
+$end (0) 0
+error (256) 5
+COMMENT (258)
+NUM (259) 6
+PLUS (260) 7
+MINUS (261)
+MULT (262)
+DIV (263)
+MOD (264)
+POW (265)
+NEG (266)
+LEFT (267)
+RIGHT (268)
+ENDLINE (269) 3 4 5
+
+
+Symbole nieterminalne i reguły, w których występują
+
+$accept (15)
+    po lewej: 0
+input (16)
+    po lewej: 1 2, po prawej: 0 2
+line (17)
+    po lewej: 3 4 5, po prawej: 2
+exp (18)
+    po lewej: 6 7, po prawej: 4 7
+
+
+Stan 0
+
+    0 $accept: . input $end
+
+    $domyślnie  redukcja przy użyciu reguły 1 (input)
+
+    input  przejście do stanu 1
+
+
+Stan 1
+
+    0 $accept: input . $end
+    2 input: input . line
+
+    $end     przesunięcie, i przejście do stanu 2
+    error    przesunięcie, i przejście do stanu 3
+    NUM      przesunięcie, i przejście do stanu 4
+    ENDLINE  przesunięcie, i przejście do stanu 5
+
+    line  przejście do stanu 6
+    exp   przejście do stanu 7
+
+
+Stan 2
+
+    0 $accept: input $end .
+
+    $domyślnie  akceptowanie
+
+
+Stan 3
+
+    5 line: error . ENDLINE
+
+    ENDLINE  przesunięcie, i przejście do stanu 8
+
+
+Stan 4
+
+    6 exp: NUM .
+
+    $domyślnie  redukcja przy użyciu reguły 6 (exp)
+
+
+Stan 5
+
+    3 line: ENDLINE .
+
+    $domyślnie  redukcja przy użyciu reguły 3 (line)
+
+
+Stan 6
+
+    2 input: input line .
+
+    $domyślnie  redukcja przy użyciu reguły 2 (input)
+
+
+Stan 7
+
+    4 line: exp . ENDLINE
+    7 exp: exp . PLUS exp
+
+    PLUS     przesunięcie, i przejście do stanu 9
+    ENDLINE  przesunięcie, i przejście do stanu 10
+
+
+Stan 8
+
+    5 line: error ENDLINE .
+
+    $domyślnie  redukcja przy użyciu reguły 5 (line)
+
+
+Stan 9
+
+    7 exp: exp PLUS . exp
+
+    NUM  przesunięcie, i przejście do stanu 4
+
+    exp  przejście do stanu 11
+
+
+Stan 10
+
+    4 line: exp ENDLINE .
+
+    $domyślnie  redukcja przy użyciu reguły 4 (line)
+
+
+Stan 11
+
+    7 exp: exp . PLUS exp
+    7    | exp PLUS exp .
+
+    $domyślnie  redukcja przy użyciu reguły 7 (exp)
