@@ -4,9 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/*podaje dlugosc stringa az do \n
- *   !!!!!!!!!!!!!!!! nieuzywane !!!!!!!!!!!!!!!!!!!!!!
- */
+/*podaje dlugosc stringa az do \n*/
 int strlen_n (char * cs){
         int i = 0;
         while(cs[i++]!='\n');
@@ -15,9 +13,7 @@ int strlen_n (char * cs){
 
 /* kopiuje cstringa do nowej komorki pamieci i zwraca wskaznik do niej
  * wymagane do obslugi comentarzy
- *   !!!!!!!!!!!!!!!! nieuzywane !!!!!!!!!!!!!!!!!!!!!!
  */
- 
 char* strcpy_n (char * src){
         char * cptr;
         int i = 0;

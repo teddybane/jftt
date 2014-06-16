@@ -1,0 +1,4 @@
+W Makefile istenieja nastepujace ulatwiajace cele.
+clean - standardowo czysci wyniki kompilacji
+run - dla zbudowanego rozwiazania uruchamia je, wysylajac na wejscie std zawartosc "plik_testowy"
+make again - czysci, buduje, uruchamia
